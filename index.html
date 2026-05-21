@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CustomForge MX | Productos Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --panel-strong: #1d1d1d;
+      --text: #e0e0e0;
+      --muted: #9ca3af;
+      --accent: #f97316;
+      --accent-2: #facc15;
+      --line: rgba(249, 115, 22, 0.24);
+      --steel: #b9bec5;
+      --radius: 8px;
+      --shadow: 0 0 34px rgba(249, 115, 22, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(249, 115, 22, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(250, 204, 21, 0.045) 1px, transparent 1px),
+        radial-gradient(circle at 20% 0%, rgba(249, 115, 22, 0.13), transparent 34rem),
+        var(--bg);
+      background-size: 34px 34px, 34px 34px, auto, auto;
+      font-family: "Rajdhani", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.23;
+      background-image: radial-gradient(rgba(224, 224, 224, 0.22) 0.8px, transparent 0.8px);
+      background-size: 9px 9px;
+      mix-blend-mode: screen;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(224, 224, 224, 0.09);
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(16px);
+    }
+
+    .navbar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0.9rem 0;
+    }
+
+    .nav-top,
+    .nav-actions,
+    .nav-links,
+    .switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-top {
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      display: grid;
+      width: 2.3rem;
+      height: 2.3rem;
+      place-items: center;
+      clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+      color: #080808;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+      font-weight: 700;
+    }
+
+    .nav-actions {
+      justify-content: flex-end;
+    }
+
+    .nav-links {
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .nav-link {
+      padding: 0.3rem 0.45rem;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .switcher {
+      padding: 0.22rem;
+      border: 1px solid rgba(224, 224, 224, 0.11);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+      border-radius: var(--radius);
+    }
+
+    .switcher button {
+      min-width: 2.7rem;
+      padding: 0.38rem 0.54rem;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.78rem;
+      transition: color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .switcher button:hover,
+    .switcher button:focus-visible,
+    .switcher button.active {
+      color: #111;
+      border-color: rgba(250, 204, 21, 0.45);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(249, 115, 22, 0.35);
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(4.5rem, 8vw, 7rem) 0;
+    }
+
+    .section::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      height: 54px;
+      content: "";
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.16), rgba(250, 204, 21, 0.035));
+      clip-path: polygon(0 62%, 72% 100%, 100% 42%, 100% 100%, 0 100%);
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      min-height: calc(100vh - 118px);
+      align-items: center;
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.2rem;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 11ch;
+      margin-bottom: 1rem;
+      font-size: clamp(3rem, 13vw, 7.4rem);
+      line-height: 0.88;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 0.65rem;
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin-bottom: 0.7rem;
+      color: var(--accent-2);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 39rem;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      line-height: 1.35;
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 21rem;
+      border: 1px solid rgba(224, 224, 224, 0.12);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(125deg, rgba(255, 255, 255, 0.13), transparent 26%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 14px),
+        linear-gradient(145deg, rgba(185, 190, 197, 0.18), rgba(22, 22, 22, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel::before,
+    .hero-panel::after {
+      position: absolute;
+      content: "";
+      border: 1px solid rgba(249, 115, 22, 0.32);
+      transform: rotate(-12deg);
+    }
+
+    .hero-panel::before {
+      inset: 17% 18% 28% 23%;
+      clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.28), rgba(250, 204, 21, 0.08));
+    }
+
+    .hero-panel::after {
+      inset: 34% 10% 17% 46%;
+      background: rgba(10, 10, 10, 0.55);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 3.1rem;
+      padding: 0.8rem 1.15rem;
+      border: 1px solid rgba(250, 204, 21, 0.48);
+      border-radius: var(--radius);
+      color: #111;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0 34px rgba(250, 204, 21, 0.32);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-head p {
+      max-width: 48rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .config-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .panel {
+      border: 1px solid rgba(224, 224, 224, 0.12);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 12px),
+        var(--panel);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+    }
+
+    .controls {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    label,
+    .field-title {
+      color: var(--text);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .help,
+    .status {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.35;
+    }
+
+    .status.error {
+      color: #fca5a5;
+    }
+
+    .upload-zone {
+      display: grid;
+      min-height: 8rem;
+      place-items: center;
+      padding: 1rem;
+      border: 1px dashed rgba(250, 204, 21, 0.45);
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.28);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .upload-zone:hover,
+    .upload-zone:focus-within {
+      color: var(--text);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 22px rgba(249, 115, 22, 0.15);
+    }
+
+    .upload-zone input {
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    select,
+    input[type="range"] {
+      width: 100%;
+    }
+
+    select {
+      min-height: 3rem;
+      padding: 0 0.8rem;
+      border: 1px solid rgba(224, 224, 224, 0.15);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: #101010;
+    }
+
+    input[type="range"] {
+      accent-color: var(--accent);
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .orientation-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .tool-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .ghost-button {
+      min-height: 2.35rem;
+      padding: 0.42rem 0.7rem;
+      border: 1px solid rgba(250, 204, 21, 0.36);
+      border-radius: 6px;
+      color: var(--text);
+      background: rgba(0, 0, 0, 0.24);
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .ghost-button:hover,
+    .ghost-button:focus-visible,
+    .ghost-button.active {
+      color: var(--accent-2);
+      border-color: var(--accent);
+      box-shadow: 0 0 18px rgba(249, 115, 22, 0.22);
+    }
+
+    .range-value {
+      color: var(--accent-2);
+      font-family: "Share Tech Mono", monospace;
+      white-space: nowrap;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .metric {
+      min-height: 5rem;
+      padding: 0.8rem;
+      border: 1px solid rgba(224, 224, 224, 0.1);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 0.3rem;
+      color: var(--text);
+      font-family: "Share Tech Mono", monospace;
+      font-size: clamp(0.96rem, 4vw, 1.18rem);
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .viewer {
+      position: relative;
+      min-height: 22rem;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 50% 40%, rgba(249, 115, 22, 0.15), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent),
+        #080808;
+    }
+
+    .viewer canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 22rem;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: none;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 3px solid rgba(224, 224, 224, 0.2);
+      border-top-color: var(--accent-2);
+      border-radius: 999px;
+      animation: spin 900ms linear infinite;
+    }
+
+    .spinner.visible {
+      display: block;
+    }
+
+    .viewer-message {
+      position: absolute;
+      inset: 1rem;
+      display: none;
+      place-items: center;
+      padding: 1rem;
+      border: 1px dashed rgba(250, 204, 21, 0.4);
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.62);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .viewer-message.visible {
+      display: grid;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .tumbler-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .image-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.82rem;
+      word-break: break-word;
+    }
+
+    .file-preview {
+      display: none;
+      gap: 0.65rem;
+      align-items: center;
+      padding: 0.65rem;
+      border: 1px solid rgba(224, 224, 224, 0.12);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .file-preview.visible {
+      display: flex;
+    }
+
+    .file-icon,
+    .thumb {
+      flex: 0 0 auto;
+      width: 3.2rem;
+      height: 3.2rem;
+      border: 1px solid rgba(250, 204, 21, 0.28);
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(250, 204, 21, 0.08));
+      object-fit: cover;
+    }
+
+    .file-icon {
+      display: grid;
+      place-items: center;
+      color: var(--accent-2);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.78rem;
+    }
+
+    .file-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .file-name {
+      display: block;
+      color: var(--text);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.86rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .thumbnail-card {
+      display: grid;
+      gap: 0.5rem;
+      padding: 0.55rem;
+      border: 1px solid rgba(224, 224, 224, 0.12);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .thumbnail-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 18px rgba(249, 115, 22, 0.22);
+    }
+
+    .thumbnail-card .thumb {
+      width: 100%;
+      height: 5.4rem;
+      background: #111;
+    }
+
+    .mini-action {
+      min-height: 2rem;
+      padding: 0.28rem 0.5rem;
+      border: 1px solid rgba(248, 113, 113, 0.34);
+      border-radius: 6px;
+      color: #fecaca;
+      background: rgba(127, 29, 29, 0.2);
+      cursor: pointer;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+    }
+
+    .mini-action:hover,
+    .mini-action:focus-visible {
+      border-color: rgba(248, 113, 113, 0.8);
+      color: #fff;
+    }
+
+    .footer {
+      padding: 2.8rem 0;
+      border-top: 1px solid rgba(224, 224, 224, 0.09);
+      background: #080808;
+    }
+
+    .footer-inner {
+      display: grid;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer strong {
+      font-family: "Share Tech Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .footer p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.55rem;
+      height: 3.55rem;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      border-radius: 999px;
+      color: #08130c;
+      background: linear-gradient(135deg, #22c55e, #bbf7d0);
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.36);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .whatsapp-float:hover,
+    .whatsapp-float:focus-visible {
+      box-shadow: 0 0 42px rgba(34, 197, 94, 0.55);
+    }
+
+    @media (min-width: 760px) {
+      .navbar {
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+      }
+
+      .nav-top {
+        display: contents;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .hero-grid,
+      .config-grid,
+      .tumbler-grid {
+        grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.35fr);
+        align-items: stretch;
+      }
+
+      .viewer,
+      .viewer canvas {
+        min-height: 32rem;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        font-size: 16px;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .switcher button {
+        min-width: 2.35rem;
+        padding-inline: 0.4rem;
+      }
+
+      .viewer,
+      .viewer canvas {
+        min-height: 19rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-top">
+        <a class="logo" href="#hero" aria-label="CustomForge MX">
+          <span class="logo-mark">CF</span>
+          <span data-i18n="brand">CustomForge MX</span>
+        </a>
+      </div>
+      <div class="nav-links" aria-label="Section links">
+        <a class="nav-link" href="#stl" data-i18n="navStl">Impresión 3D</a>
+        <a class="nav-link" href="#tumbler" data-i18n="navTumbler">Termos grabados</a>
+        <a class="nav-link" href="#contact" data-i18n="navContact">Contacto</a>
+      </div>
+      <div class="nav-actions">
+        <div class="switcher" aria-label="Language switcher">
+          <button type="button" class="lang-btn active" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <div class="switcher" aria-label="Currency switcher">
+          <button type="button" class="currency-btn active" data-currency="MXN">MXN</button>
+          <button type="button" class="currency-btn" data-currency="USD">USD</button>
+          <button type="button" class="currency-btn" data-currency="EUR">EUR</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section hero" id="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow" data-i18n="heroKicker">Taller digital de fabricación</p>
+          <h1 data-i18n="heroTitle">Productos personalizados</h1>
+          <p class="hero-copy" data-i18n="heroSubtitle">Impresión 3D precisa y grabado láser para regalos, marcas y piezas únicas.</p>
+          <a class="button" href="#stl" data-i18n="heroCta">Cotizar STL</a>
+        </div>
+        <div class="hero-panel" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section" id="stl">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="stlKicker">Configurador STL</p>
+          <h2 data-i18n="stlTitle">Visualiza y estima tu impresión</h2>
+          <p data-i18n="stlIntro">Sube un archivo STL binario o ASCII, ajusta material y escala, y calcula peso, dimensiones y precio al instante.</p>
+        </div>
+        <div class="config-grid">
+          <div class="panel controls">
+            <label class="upload-zone" for="stlFile">
+              <input type="file" id="stlFile" accept=".stl">
+              <span data-i18n="stlUpload">Subir archivo .STL</span>
+              <small class="help" data-i18n="stlUploadHelp">Compatible con STL binario y ASCII.</small>
+            </label>
+            <div class="file-preview" id="stlPreview">
+              <span class="file-icon">STL</span>
+              <span class="file-meta">
+                <span class="file-name" id="stlFileName"></span>
+                <small class="help" data-i18n="stlReplaceHelp">Carga otro STL para reemplazarlo.</small>
+              </span>
+              <button class="mini-action" type="button" id="removeStl" data-i18n="removeFile">Quitar</button>
+            </div>
+            <p class="status" id="stlStatus" data-i18n="stlIdle">Esperando archivo STL.</p>
+
+            <div class="field">
+              <label for="material" data-i18n="materialLabel">Material</label>
+              <select id="material">
+                <option value="PLA" data-i18n="materialPla">PLA - rígido y económico</option>
+                <option value="PETG" data-i18n="materialPetg">PETG - resistente y durable</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <div class="tool-row">
+                <span class="field-title" data-i18n="transformLabel">Transformar STL</span>
+                <span class="range-value" id="scaleValue">100%</span>
+              </div>
+              <div class="tool-row">
+                <button class="ghost-button transform-btn active" type="button" id="stlMove" data-mode="translate" data-i18n="moveTool">Mover</button>
+                <button class="ghost-button transform-btn" type="button" id="stlRotate" data-mode="rotate" data-i18n="rotateTool">Rotar</button>
+                <button class="ghost-button transform-btn" type="button" id="stlScale" data-mode="scale" data-i18n="scaleTool">Escalar</button>
+                <button class="ghost-button" type="button" id="resetTransform" data-i18n="resetTransform">Reset</button>
+              </div>
+              <small class="help" data-i18n="transformHelp">Selecciona una herramienta y arrastra el gizmo del modelo en el visor.</small>
+            </div>
+
+            <div class="metrics" aria-live="polite">
+              <div class="metric">
+                <span data-i18n="weightLabel">Peso estimado</span>
+                <strong id="weightValue">0.00 g</strong>
+              </div>
+              <div class="metric">
+                <span data-i18n="priceLabel">Precio estimado</span>
+                <strong id="priceValue">$ MXN 0.00</strong>
+              </div>
+              <div class="metric">
+                <span data-i18n="dimensionsLabel">Dimensiones</span>
+                <strong id="dimensionsValue">0.00 x 0.00 x 0.00 cm</strong>
+              </div>
+              <div class="metric">
+                <span data-i18n="volumeLabel">Volumen</span>
+                <strong id="volumeValue">0.00 cm3</strong>
+              </div>
+            </div>
+          </div>
+          <div class="panel viewer" id="stlViewer">
+            <div class="spinner" id="stlSpinner" aria-hidden="true"></div>
+            <div class="viewer-message" id="stlViewerMessage"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tumbler">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="tumblerKicker">Grabado láser 30 oz</p>
+          <h2 data-i18n="tumblerTitle">Prueba tu diseño en metal</h2>
+          <p data-i18n="tumblerIntro">Carga una o varias imágenes para simular grabado en un termo metálico de 30 oz y revisa todos los lados en 3D.</p>
+        </div>
+        <div class="tumbler-grid">
+          <div class="panel controls">
+            <label class="upload-zone" for="engravingFiles">
+              <input type="file" id="engravingFiles" accept=".png,.jpg,.jpeg,.svg,image/png,image/jpeg,image/svg+xml" multiple>
+              <span data-i18n="tumblerUpload">Subir imágenes PNG, JPG o SVG</span>
+              <small class="help" data-i18n="tumblerUploadHelp">Puedes aplicar varios diseños al mismo tiempo.</small>
+            </label>
+            <p class="status" id="tumblerStatus" data-i18n="tumblerIdle">Termo listo para diseños.</p>
+            <div>
+              <div class="field-title" data-i18n="loadedImages">Imágenes cargadas</div>
+              <small class="help" data-i18n="tumblerEditHelp">Agrega más imágenes o quita miniaturas individuales.</small>
+              <div class="image-list" id="imageList">Ninguna todavía.</div>
+            </div>
+            <div class="metric">
+              <span data-i18n="tumblerPriceLabel">Precio de referencia</span>
+              <strong id="tumblerPrice">$ MXN 280.00</strong>
+            </div>
+          </div>
+          <div class="panel viewer" id="tumblerViewer">
+            <div class="viewer-message" id="tumblerViewerMessage"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-inner">
+      <div>
+        <strong data-i18n="footerBrand">Nombre del negocio</strong>
+        <p data-i18n="footerTagline">Fabricación personalizada con precisión, textura y carácter industrial.</p>
+      </div>
+      <a class="button" id="footerWhatsapp" href="#" target="_blank" rel="noopener" data-i18n="footerWhatsapp">Contactar por WhatsApp</a>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" id="whatsappFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+
+  <script>
+    const PRICES_MXN = { PLA: 1.80, PETG: 2.20 };
+    const DENSITIES = { PLA: 1.24, PETG: 1.27 };
+    const EXCHANGE_RATES = { MXN: 1, USD: 1 / 17.50, EUR: 1 / 19.00 };
+    const TUMBLER_PRICE_MXN = 280;
+    // Edit this value with the WhatsApp number in international format, without + or spaces.
+    const WHATSAPP_PHONE_NUMBER = "5625236788";
+    const CURRENCY_SYMBOLS = { MXN: "$ MXN", USD: "$ USD", EUR: "€ EUR" };
+    const CDN_SOURCES = {
+      three: [
+        "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+        "https://unpkg.com/three@0.128.0/build/three.min.js"
+      ],
+      orbitControls: [
+        "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js",
+        "https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"
+      ],
+      transformControls: [
+        "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TransformControls.js",
+        "https://unpkg.com/three@0.128.0/examples/js/controls/TransformControls.js"
+      ]
+    };
+
+    const translations = {
+      es: {
+        brand: "CustomForge MX",
+        navStl: "Impresión 3D",
+        navTumbler: "Termos grabados",
+        navContact: "Contacto",
+        heroKicker: "Taller digital de fabricación",
+        heroTitle: "Productos personalizados",
+        heroSubtitle: "Impresión 3D precisa y grabado láser para regalos, marcas y piezas únicas.",
+        heroCta: "Cotizar STL",
+        stlKicker: "Configurador STL",
+        stlTitle: "Visualiza y estima tu impresión",
+        stlIntro: "Sube un archivo STL binario o ASCII, ajusta material y escala, y calcula peso, dimensiones y precio al instante.",
+        stlUpload: "Subir archivo .STL",
+        stlUploadHelp: "Compatible con STL binario y ASCII.",
+        stlIdle: "Esperando archivo STL.",
+        stlParsing: "Analizando archivo STL...",
+        stlLoaded: "Archivo STL cargado correctamente.",
+        stlInvalid: "Selecciona un archivo .STL válido.",
+        stlEmpty: "El archivo STL está vacío.",
+        stlParseError: "No se pudo interpretar el STL. Revisa el archivo e intenta de nuevo.",
+        stlReplaceHelp: "Carga otro STL para reemplazarlo.",
+        materialLabel: "Material",
+        materialPla: "PLA - rígido y económico",
+        materialPetg: "PETG - resistente y durable",
+        transformLabel: "Transformar STL",
+        moveTool: "Mover",
+        rotateTool: "Rotar",
+        scaleTool: "Escalar",
+        resetTransform: "Reset",
+        transformHelp: "Selecciona una herramienta y arrastra el gizmo del modelo en el visor.",
+        weightLabel: "Peso estimado",
+        priceLabel: "Precio estimado",
+        dimensionsLabel: "Dimensiones",
+        volumeLabel: "Volumen",
+        tumblerKicker: "Grabado láser 30 oz",
+        tumblerTitle: "Prueba tu diseño en metal",
+        tumblerIntro: "Carga una o varias imágenes para simular grabado en un termo metálico de 30 oz y revisa todos los lados en 3D.",
+        tumblerUpload: "Subir imágenes PNG, JPG o SVG",
+        tumblerUploadHelp: "Puedes aplicar varios diseños al mismo tiempo.",
+        tumblerIdle: "Termo listo para diseños.",
+        tumblerLoaded: "Diseños aplicados al termo.",
+        tumblerInvalid: "Solo se aceptan imágenes PNG, JPG o SVG.",
+        viewerUnavailable: "No se pudo cargar el motor 3D. Revisa tu conexión a internet y recarga la página.",
+        loadedImages: "Imágenes cargadas",
+        tumblerEditHelp: "Agrega más imágenes, arrástralas sobre el termo o quita miniaturas individuales.",
+        noneLoaded: "Ninguna todavía.",
+        removeFile: "Quitar",
+        removeImage: "Quitar",
+        tumblerPriceLabel: "Precio de referencia",
+        footerBrand: "Nombre del negocio",
+        footerTagline: "Fabricación personalizada con precisión, textura y carácter industrial.",
+        footerWhatsapp: "Contactar por WhatsApp",
+        whatsappGreeting: "Hola, quiero cotizar un producto personalizado.",
+        productStl: "Impresión STL",
+        productTumbler: "Grabado de termo",
+        whatsappProduct: "Producto",
+        whatsappMaterial: "Material",
+        whatsappPrice: "Precio estimado"
+      },
+      en: {
+        brand: "CustomForge MX",
+        navStl: "3D Printing",
+        navTumbler: "Engraved Tumblers",
+        navContact: "Contact",
+        heroKicker: "Digital fabrication workshop",
+        heroTitle: "Personalized products",
+        heroSubtitle: "Precise 3D printing and laser engraving for gifts, brands, and one-off parts.",
+        heroCta: "Estimate STL",
+        stlKicker: "STL Configurator",
+        stlTitle: "Visualize and estimate your print",
+        stlIntro: "Upload a binary or ASCII STL, adjust material and scale, and calculate weight, dimensions, and price instantly.",
+        stlUpload: "Upload .STL file",
+        stlUploadHelp: "Compatible with binary and ASCII STL.",
+        stlIdle: "Waiting for an STL file.",
+        stlParsing: "Parsing STL file...",
+        stlLoaded: "STL file loaded successfully.",
+        stlInvalid: "Choose a valid .STL file.",
+        stlEmpty: "The STL file is empty.",
+        stlParseError: "The STL could not be parsed. Check the file and try again.",
+        stlReplaceHelp: "Upload another STL to replace it.",
+        materialLabel: "Material",
+        materialPla: "PLA - rigid and economical",
+        materialPetg: "PETG - strong and durable",
+        transformLabel: "Transform STL",
+        moveTool: "Move",
+        rotateTool: "Rotate",
+        scaleTool: "Scale",
+        resetTransform: "Reset",
+        transformHelp: "Choose a tool and drag the model gizmo inside the viewer.",
+        weightLabel: "Estimated weight",
+        priceLabel: "Estimated price",
+        dimensionsLabel: "Dimensions",
+        volumeLabel: "Volume",
+        tumblerKicker: "30 oz laser engraving",
+        tumblerTitle: "Test your design on metal",
+        tumblerIntro: "Upload one or more images to simulate engraving on a metallic 30 oz tumbler and inspect every side in 3D.",
+        tumblerUpload: "Upload PNG, JPG, or SVG images",
+        tumblerUploadHelp: "You can apply several designs at the same time.",
+        tumblerIdle: "Tumbler ready for designs.",
+        tumblerLoaded: "Designs applied to the tumbler.",
+        tumblerInvalid: "Only PNG, JPG, or SVG images are accepted.",
+        viewerUnavailable: "The 3D engine could not be loaded. Check your internet connection and reload the page.",
+        loadedImages: "Loaded images",
+        tumblerEditHelp: "Add more images, drag them on the tumbler, or remove individual thumbnails.",
+        noneLoaded: "None yet.",
+        removeFile: "Remove",
+        removeImage: "Remove",
+        tumblerPriceLabel: "Reference price",
+        footerBrand: "Business name",
+        footerTagline: "Custom fabrication with precision, texture, and industrial character.",
+        footerWhatsapp: "Contact on WhatsApp",
+        whatsappGreeting: "Hi, I would like to quote a personalized product.",
+        productStl: "STL print",
+        productTumbler: "Tumbler engraving",
+        whatsappProduct: "Product",
+        whatsappMaterial: "Material",
+        whatsappPrice: "Estimated price"
+      },
+      fr: {
+        brand: "CustomForge MX",
+        navStl: "Impression 3D",
+        navTumbler: "Gobelets gravés",
+        navContact: "Contact",
+        heroKicker: "Atelier de fabrication numérique",
+        heroTitle: "Produits personnalisés",
+        heroSubtitle: "Impression 3D précise et gravure laser pour cadeaux, marques et pièces uniques.",
+        heroCta: "Estimer un STL",
+        stlKicker: "Configurateur STL",
+        stlTitle: "Visualisez et estimez votre impression",
+        stlIntro: "Importez un STL binaire ou ASCII, ajustez le matériau et l'échelle, puis calculez le poids, les dimensions et le prix instantanément.",
+        stlUpload: "Importer un fichier .STL",
+        stlUploadHelp: "Compatible avec les STL binaires et ASCII.",
+        stlIdle: "En attente d'un fichier STL.",
+        stlParsing: "Analyse du fichier STL...",
+        stlLoaded: "Fichier STL chargé avec succès.",
+        stlInvalid: "Choisissez un fichier .STL valide.",
+        stlEmpty: "Le fichier STL est vide.",
+        stlParseError: "Impossible d'analyser le STL. Vérifiez le fichier et réessayez.",
+        stlReplaceHelp: "Importez un autre STL pour le remplacer.",
+        materialLabel: "Matériau",
+        materialPla: "PLA - rigide et économique",
+        materialPetg: "PETG - solide et durable",
+        transformLabel: "Transformer le STL",
+        moveTool: "Déplacer",
+        rotateTool: "Tourner",
+        scaleTool: "Échelle",
+        resetTransform: "Reset",
+        transformHelp: "Choisissez un outil et faites glisser le gizmo du modèle dans le visualiseur.",
+        weightLabel: "Poids estimé",
+        priceLabel: "Prix estimé",
+        dimensionsLabel: "Dimensions",
+        volumeLabel: "Volume",
+        tumblerKicker: "Gravure laser 30 oz",
+        tumblerTitle: "Testez votre design sur métal",
+        tumblerIntro: "Importez une ou plusieurs images pour simuler la gravure sur un gobelet métallique de 30 oz et inspecter tous les côtés en 3D.",
+        tumblerUpload: "Importer des images PNG, JPG ou SVG",
+        tumblerUploadHelp: "Vous pouvez appliquer plusieurs designs en même temps.",
+        tumblerIdle: "Gobelet prêt pour les designs.",
+        tumblerLoaded: "Designs appliqués au gobelet.",
+        tumblerInvalid: "Seules les images PNG, JPG ou SVG sont acceptées.",
+        viewerUnavailable: "Le moteur 3D n'a pas pu être chargé. Vérifiez votre connexion internet et rechargez la page.",
+        loadedImages: "Images chargées",
+        tumblerEditHelp: "Ajoutez plus d'images, déplacez-les sur le gobelet ou supprimez des miniatures individuelles.",
+        noneLoaded: "Aucune pour l'instant.",
+        removeFile: "Retirer",
+        removeImage: "Retirer",
+        tumblerPriceLabel: "Prix de référence",
+        footerBrand: "Nom de l'entreprise",
+        footerTagline: "Fabrication personnalisée avec précision, texture et caractère industriel.",
+        footerWhatsapp: "Contacter sur WhatsApp",
+        whatsappGreeting: "Bonjour, je souhaite obtenir un devis pour un produit personnalisé.",
+        productStl: "Impression STL",
+        productTumbler: "Gravure de gobelet",
+        whatsappProduct: "Produit",
+        whatsappMaterial: "Matériau",
+        whatsappPrice: "Prix estimé"
+      }
+    };
+
+    const state = {
+      language: "es",
+      currency: "MXN",
+      stlMesh: null,
+      stlVolumeCm3: 0,
+      stlDimensionsCm: { x: 0, y: 0, z: 0 },
+      stlViewerScale: 1,
+      stlPrintScale: 1,
+      stlTransformMode: "translate",
+      stlFileName: "",
+      selectedProduct: "stl",
+      engravingImages: [],
+      activeEngravingIndex: 0,
+      isDraggingEngraving: false,
+      dragOffset: { u: 0, v: 0 },
+      stlStatusKey: "stlIdle",
+      stlStatusIsError: false,
+      tumblerStatusKey: "tumblerIdle",
+      tumblerStatusIsError: false
+    };
+
+    const elements = {
+      languageButtons: document.querySelectorAll(".lang-btn"),
+      currencyButtons: document.querySelectorAll(".currency-btn"),
+      i18nNodes: document.querySelectorAll("[data-i18n]"),
+      stlFile: document.getElementById("stlFile"),
+      stlStatus: document.getElementById("stlStatus"),
+      stlSpinner: document.getElementById("stlSpinner"),
+      material: document.getElementById("material"),
+      scale: document.getElementById("scale"),
+      scaleValue: document.getElementById("scaleValue"),
+      stlPreview: document.getElementById("stlPreview"),
+      stlFileName: document.getElementById("stlFileName"),
+      removeStl: document.getElementById("removeStl"),
+      transformButtons: document.querySelectorAll(".transform-btn"),
+      stlMove: document.getElementById("stlMove"),
+      stlRotate: document.getElementById("stlRotate"),
+      stlScale: document.getElementById("stlScale"),
+      resetTransform: document.getElementById("resetTransform"),
+      weightValue: document.getElementById("weightValue"),
+      priceValue: document.getElementById("priceValue"),
+      dimensionsValue: document.getElementById("dimensionsValue"),
+      volumeValue: document.getElementById("volumeValue"),
+      tumblerFiles: document.getElementById("engravingFiles"),
+      tumblerStatus: document.getElementById("tumblerStatus"),
+      imageList: document.getElementById("imageList"),
+      tumblerPrice: document.getElementById("tumblerPrice"),
+      stlViewerMessage: document.getElementById("stlViewerMessage"),
+      tumblerViewerMessage: document.getElementById("tumblerViewerMessage"),
+      whatsappFloat: document.getElementById("whatsappFloat"),
+      footerWhatsapp: document.getElementById("footerWhatsapp")
+    };
+
+    let stlScene;
+    let stlCamera;
+    let stlRenderer;
+    let stlControls;
+    let stlTransformControls;
+    let tumblerScene;
+    let tumblerCamera;
+    let tumblerRenderer;
+    let tumblerControls;
+    let tumblerMesh;
+    let tumblerTexture;
+    let tumblerCanvas;
+    let tumblerCtx;
+    let tumblerRaycaster;
+    let tumblerPointer;
+
+    function t(key) {
+      return translations[state.language][key] || translations.es[key] || key;
+    }
+
+    function formatCurrency(amountMxn) {
+      const converted = amountMxn * EXCHANGE_RATES[state.currency];
+      const formatted = converted.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return `${CURRENCY_SYMBOLS[state.currency]} ${formatted}`;
+    }
+
+    function setStatus(element, messageKey, isError = false) {
+      if (element === elements.stlStatus) {
+        state.stlStatusKey = messageKey;
+        state.stlStatusIsError = isError;
+      }
+      if (element === elements.tumblerStatus) {
+        state.tumblerStatusKey = messageKey;
+        state.tumblerStatusIsError = isError;
+      }
+      element.textContent = t(messageKey);
+      element.classList.toggle("error", isError);
+    }
+
+    function applyTranslations() {
+      document.documentElement.lang = state.language;
+      elements.i18nNodes.forEach((node) => {
+        const key = node.dataset.i18n;
+        node.textContent = t(key);
+      });
+      elements.languageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === state.language);
+      });
+      elements.stlStatus.textContent = t(state.stlStatusKey);
+      elements.stlStatus.classList.toggle("error", state.stlStatusIsError);
+      elements.tumblerStatus.textContent = t(state.tumblerStatusKey);
+      elements.tumblerStatus.classList.toggle("error", state.tumblerStatusIsError);
+      updateViewerMessages();
+      updateStlPreview();
+      updateImageList();
+      updateStlEstimate();
+      updateTumblerPrice();
+      updateWhatsappLinks();
+    }
+
+    function setCurrency(currency) {
+      state.currency = currency;
+      elements.currencyButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.currency === state.currency);
+      });
+      updateStlEstimate();
+      updateTumblerPrice();
+      updateWhatsappLinks();
+    }
+
+    function hasThreeDependencies() {
+      return Boolean(window.THREE && THREE.OrbitControls && THREE.TransformControls);
+    }
+
+    function loadScriptWithFallback(urls, validator) {
+      return urls.reduce((promise, url) => {
+        return promise.catch(() => loadSingleScript(url).then(() => {
+          if (!validator()) {
+            throw new Error(`Dependency did not initialize: ${url}`);
+          }
+        }));
+      }, Promise.reject()).catch((error) => {
+        throw error;
+      });
+    }
+
+    function loadSingleScript(url) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = url;
+        script.async = false;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Could not load ${url}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    function loadThreeDependencies() {
+      if (hasThreeDependencies()) {
+        return Promise.resolve();
+      }
+      return loadScriptWithFallback(CDN_SOURCES.three, () => Boolean(window.THREE))
+        .then(() => loadScriptWithFallback(CDN_SOURCES.orbitControls, () => Boolean(THREE.OrbitControls)))
+        .then(() => loadScriptWithFallback(CDN_SOURCES.transformControls, () => Boolean(THREE.TransformControls)));
+    }
+
+    function updateViewerMessages() {
+      const isUnavailable = !hasThreeDependencies();
+      [elements.stlViewerMessage, elements.tumblerViewerMessage].forEach((element) => {
+        element.textContent = isUnavailable ? t("viewerUnavailable") : "";
+        element.classList.toggle("visible", isUnavailable);
+      });
+    }
+
+    function initStlViewer() {
+      const container = document.getElementById("stlViewer");
+      stlScene = new THREE.Scene();
+      stlCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 2000);
+      stlCamera.position.set(8, 7, 9);
+
+      stlRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      stlRenderer.setPixelRatio(window.devicePixelRatio);
+      stlRenderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(stlRenderer.domElement);
+
+      stlControls = new THREE.OrbitControls(stlCamera, stlRenderer.domElement);
+      stlControls.enableDamping = true;
+      stlControls.screenSpacePanning = true;
+
+      stlTransformControls = new THREE.TransformControls(stlCamera, stlRenderer.domElement);
+      stlTransformControls.setMode(state.stlTransformMode);
+      stlTransformControls.setSpace("local");
+      stlTransformControls.setSize(0.82);
+      stlTransformControls.addEventListener("dragging-changed", (event) => {
+        stlControls.enabled = !event.value;
+      });
+      stlTransformControls.addEventListener("objectChange", handleStlTransformChange);
+      stlScene.add(stlTransformControls);
+
+      stlScene.add(new THREE.AmbientLight(0xffffff, 0.65));
+      const keyLight = new THREE.DirectionalLight(0xfacc15, 0.85);
+      keyLight.position.set(8, 12, 10);
+      stlScene.add(keyLight);
+      const grid = new THREE.GridHelper(18, 18, 0xf97316, 0x343434);
+      grid.position.y = -1.5;
+      stlScene.add(grid);
+
+      animateStl();
+    }
+
+    function initTumblerViewer() {
+      const container = document.getElementById("tumblerViewer");
+      tumblerScene = new THREE.Scene();
+      tumblerCamera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      tumblerCamera.position.set(0, 3.2, 8.4);
+
+      tumblerRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      tumblerRenderer.setPixelRatio(window.devicePixelRatio);
+      tumblerRenderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(tumblerRenderer.domElement);
+
+      tumblerControls = new THREE.OrbitControls(tumblerCamera, tumblerRenderer.domElement);
+      tumblerControls.enableDamping = true;
+
+      tumblerScene.add(new THREE.AmbientLight(0xffffff, 0.58));
+      const lightOne = new THREE.DirectionalLight(0xffffff, 1);
+      lightOne.position.set(4, 7, 5);
+      tumblerScene.add(lightOne);
+      const lightTwo = new THREE.DirectionalLight(0xfacc15, 0.56);
+      lightTwo.position.set(-4, 2, -3);
+      tumblerScene.add(lightTwo);
+      const rimLight = new THREE.DirectionalLight(0xe0f2fe, 0.92);
+      rimLight.position.set(-5, 5, 6);
+      tumblerScene.add(rimLight);
+      const frontSpark = new THREE.PointLight(0xffffff, 0.7, 18);
+      frontSpark.position.set(0, 1.2, 5.5);
+      tumblerScene.add(frontSpark);
+      const fillLight = new THREE.HemisphereLight(0xffffff, 0x202020, 0.52);
+      tumblerScene.add(fillLight);
+
+      tumblerCanvas = document.createElement("canvas");
+      tumblerCanvas.width = 1536;
+      tumblerCanvas.height = 768;
+      tumblerCtx = tumblerCanvas.getContext("2d");
+      drawTumblerTexture();
+      tumblerTexture = new THREE.CanvasTexture(tumblerCanvas);
+      tumblerTexture.wrapS = THREE.RepeatWrapping;
+      tumblerTexture.wrapT = THREE.ClampToEdgeWrapping;
+
+      const geometry = new THREE.CylinderGeometry(1.45, 1.15, 4.9, 128, 1, true);
+      const material = new THREE.MeshStandardMaterial({
+        map: tumblerTexture,
+        color: 0xffffff,
+        metalness: 0.08,
+        roughness: 0.72
+      });
+      tumblerMesh = new THREE.Mesh(geometry, material);
+      tumblerScene.add(tumblerMesh);
+      tumblerRaycaster = new THREE.Raycaster();
+      tumblerPointer = new THREE.Vector2();
+      bindTumblerDrag();
+
+      const rimMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf2f4f7,
+        metalness: 0.9,
+        roughness: 0.16
+      });
+      const topRim = new THREE.Mesh(new THREE.TorusGeometry(1.45, 0.045, 16, 128), rimMaterial);
+      topRim.position.y = 2.45;
+      topRim.rotation.x = Math.PI / 2;
+      tumblerScene.add(topRim);
+
+      const bottomRim = topRim.clone();
+      bottomRim.scale.set(0.8, 0.8, 0.8);
+      bottomRim.position.y = -2.45;
+      tumblerScene.add(bottomRim);
+
+      const lidMaterial = new THREE.MeshStandardMaterial({
+        color: 0x171717,
+        metalness: 0.28,
+        roughness: 0.36
+      });
+      const lid = new THREE.Mesh(new THREE.CylinderGeometry(1.34, 1.42, 0.26, 128), lidMaterial);
+      lid.position.y = 2.64;
+      tumblerScene.add(lid);
+
+      const lidInset = new THREE.Mesh(new THREE.CylinderGeometry(1.06, 1.12, 0.06, 128), new THREE.MeshStandardMaterial({
+        color: 0x2b2b2b,
+        metalness: 0.35,
+        roughness: 0.28
+      }));
+      lidInset.position.y = 2.82;
+      tumblerScene.add(lidInset);
+
+      const slider = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.08, 0.22), new THREE.MeshStandardMaterial({
+        color: 0x0f0f0f,
+        metalness: 0.18,
+        roughness: 0.38
+      }));
+      slider.position.set(0, 2.88, 0.34);
+      tumblerScene.add(slider);
+
+      const baseFoot = new THREE.Mesh(new THREE.CylinderGeometry(1.02, 1.09, 0.22, 128), rimMaterial);
+      baseFoot.position.y = -2.56;
+      tumblerScene.add(baseFoot);
+
+      animateTumbler();
+    }
+
+    function animateStl() {
+      requestAnimationFrame(animateStl);
+      stlControls.update();
+      stlRenderer.render(stlScene, stlCamera);
+    }
+
+    function animateTumbler() {
+      requestAnimationFrame(animateTumbler);
+      tumblerControls.update();
+      tumblerRenderer.render(tumblerScene, tumblerCamera);
+    }
+
+    function resizeViewers() {
+      resizeViewer("stlViewer", stlCamera, stlRenderer);
+      resizeViewer("tumblerViewer", tumblerCamera, tumblerRenderer);
+    }
+
+    function resizeViewer(id, camera, renderer) {
+      if (!camera || !renderer) return;
+      const container = document.getElementById(id);
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    function readStlFile(file) {
+      if (!hasThreeDependencies()) {
+        updateViewerMessages();
+        setStatus(elements.stlStatus, "viewerUnavailable", true);
+        return;
+      }
+      if (!file || !file.name.toLowerCase().endsWith(".stl")) {
+        setStatus(elements.stlStatus, "stlInvalid", true);
+        return;
+      }
+
+      elements.stlSpinner.classList.add("visible");
+      setStatus(elements.stlStatus, "stlParsing");
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const buffer = reader.result;
+          if (!buffer || buffer.byteLength === 0) {
+            throw new Error("empty");
+          }
+          const geometry = parseStl(buffer);
+          renderStlGeometry(geometry);
+          state.stlFileName = file.name;
+          updateStlPreview();
+          setStatus(elements.stlStatus, "stlLoaded");
+        } catch (error) {
+          console.error(error);
+          setStatus(elements.stlStatus, error.message === "empty" ? "stlEmpty" : "stlParseError", true);
+        } finally {
+          elements.stlSpinner.classList.remove("visible");
+        }
+      };
+      reader.onerror = () => {
+        setStatus(elements.stlStatus, "stlParseError", true);
+        elements.stlSpinner.classList.remove("visible");
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    function updateStlPreview() {
+      const hasFile = Boolean(state.stlFileName);
+      elements.stlPreview.classList.toggle("visible", hasFile);
+      elements.stlFileName.textContent = state.stlFileName;
+    }
+
+    function clearStlFile() {
+      if (state.stlMesh) {
+        stlScene.remove(state.stlMesh);
+        state.stlMesh.geometry.dispose();
+        state.stlMesh.material.dispose();
+        state.stlMesh = null;
+      }
+      state.stlFileName = "";
+      state.stlVolumeCm3 = 0;
+      state.stlDimensionsCm = { x: 0, y: 0, z: 0 };
+      state.stlPrintScale = 1;
+      if (stlTransformControls) {
+        stlTransformControls.detach();
+      }
+      elements.stlFile.value = "";
+      updateStlPreview();
+      updateTransformControls();
+      updateStlEstimate();
+      setStatus(elements.stlStatus, "stlIdle");
+      updateWhatsappLinks();
+    }
+
+    function parseStl(buffer) {
+      const isBinary = isBinaryStl(buffer);
+      return isBinary ? parseBinaryStl(buffer) : parseAsciiStl(buffer);
+    }
+
+    function isBinaryStl(buffer) {
+      if (buffer.byteLength < 84) return false;
+      const view = new DataView(buffer);
+      const faceCount = view.getUint32(80, true);
+      const expectedSize = 84 + faceCount * 50;
+      return expectedSize === buffer.byteLength;
+    }
+
+    function parseBinaryStl(buffer) {
+      const view = new DataView(buffer);
+      const faceCount = view.getUint32(80, true);
+      const positions = new Float32Array(faceCount * 9);
+      const normals = new Float32Array(faceCount * 9);
+      let offset = 84;
+      let positionIndex = 0;
+
+      for (let i = 0; i < faceCount; i++) {
+        const normal = [
+          view.getFloat32(offset, true),
+          view.getFloat32(offset + 4, true),
+          view.getFloat32(offset + 8, true)
+        ];
+        offset += 12;
+        for (let vertex = 0; vertex < 3; vertex++) {
+          positions[positionIndex] = view.getFloat32(offset, true);
+          positions[positionIndex + 1] = view.getFloat32(offset + 4, true);
+          positions[positionIndex + 2] = view.getFloat32(offset + 8, true);
+          normals[positionIndex] = normal[0];
+          normals[positionIndex + 1] = normal[1];
+          normals[positionIndex + 2] = normal[2];
+          positionIndex += 3;
+          offset += 12;
+        }
+        offset += 2;
+      }
+      return buildGeometry(positions, normals);
+    }
+
+    function parseAsciiStl(buffer) {
+      const text = new TextDecoder().decode(buffer);
+      const matches = [...text.matchAll(/vertex\s+([+-]?\d*\.?\d+(?:e[+-]?\d+)?)\s+([+-]?\d*\.?\d+(?:e[+-]?\d+)?)\s+([+-]?\d*\.?\d+(?:e[+-]?\d+)?)/gi)];
+      if (matches.length < 3) {
+        throw new Error("parse");
+      }
+      const positions = new Float32Array(matches.length * 3);
+      matches.forEach((match, index) => {
+        positions[index * 3] = parseFloat(match[1]);
+        positions[index * 3 + 1] = parseFloat(match[2]);
+        positions[index * 3 + 2] = parseFloat(match[3]);
+      });
+      return buildGeometry(positions);
+    }
+
+    function buildGeometry(positions, normals) {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      if (normals) {
+        geometry.setAttribute("normal", new THREE.BufferAttribute(normals, 3));
+      } else {
+        geometry.computeVertexNormals();
+      }
+      geometry.computeBoundingBox();
+      geometry.computeBoundingSphere();
+      return geometry;
+    }
+
+    function renderStlGeometry(geometry) {
+      if (state.stlMesh) {
+        if (stlTransformControls) {
+          stlTransformControls.detach();
+        }
+        stlScene.remove(state.stlMesh);
+        state.stlMesh.geometry.dispose();
+        state.stlMesh.material.dispose();
+      }
+
+      geometry.center();
+      geometry.computeBoundingBox();
+      const box = geometry.boundingBox;
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDimension = Math.max(size.x, size.y, size.z) || 1;
+      const viewerScale = 5 / maxDimension;
+      state.stlViewerScale = viewerScale;
+      state.stlPrintScale = 1;
+
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xf97316,
+        metalness: 0.18,
+        roughness: 0.42,
+        flatShading: false
+      });
+
+      state.stlMesh = new THREE.Mesh(geometry, material);
+      applyStlTransform();
+      stlScene.add(state.stlMesh);
+      stlTransformControls.attach(state.stlMesh);
+
+      state.stlVolumeCm3 = Math.abs(calculateVolumeMm3(geometry)) / 1000;
+      state.stlDimensionsCm = {
+        x: size.x / 10,
+        y: size.y / 10,
+        z: size.z / 10
+      };
+
+      stlCamera.position.set(7, 6, 8);
+      stlControls.target.set(0, 0, 0);
+      stlControls.update();
+      updateStlEstimate();
+    }
+
+    function applyStlTransform() {
+      if (!state.stlMesh) return;
+      state.stlMesh.scale.setScalar(state.stlViewerScale * state.stlPrintScale);
+      state.stlMesh.updateMatrixWorld(true);
+    }
+
+    function updateTransformControls() {
+      elements.scaleValue.textContent = `${Math.round(state.stlPrintScale * 100)}%`;
+      elements.transformButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === state.stlTransformMode);
+      });
+      if (stlTransformControls) {
+        stlTransformControls.setMode(state.stlTransformMode);
+      }
+    }
+
+    function setStlTransformMode(mode) {
+      state.stlTransformMode = mode;
+      updateTransformControls();
+    }
+
+    function handleStlTransformChange() {
+      if (!state.stlMesh) return;
+      if (state.stlTransformMode === "scale") {
+        const currentScale = state.stlMesh.scale;
+        const averageScale = (Math.abs(currentScale.x) + Math.abs(currentScale.y) + Math.abs(currentScale.z)) / 3;
+        state.stlPrintScale = Math.min(3, Math.max(0.1, averageScale / state.stlViewerScale));
+        state.stlMesh.scale.setScalar(state.stlViewerScale * state.stlPrintScale);
+      }
+      state.stlMesh.updateMatrixWorld(true);
+      updateTransformControls();
+      updateStlEstimate();
+      updateWhatsappLinks();
+    }
+
+    function resetStlTransform() {
+      if (!state.stlMesh) return;
+      state.stlMesh.position.set(0, 0, 0);
+      state.stlMesh.rotation.set(0, 0, 0);
+      state.stlPrintScale = 1;
+      applyStlTransform();
+      updateTransformControls();
+      updateStlEstimate();
+      updateWhatsappLinks();
+    }
+
+    function getOrientedDimensionsCm() {
+      if (!state.stlMesh) {
+        return state.stlDimensionsCm;
+      }
+      applyStlTransform();
+      const box = new THREE.Box3().setFromObject(state.stlMesh);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const viewerScale = state.stlViewerScale || 1;
+      return {
+        x: size.x / viewerScale / 10,
+        y: size.y / viewerScale / 10,
+        z: size.z / viewerScale / 10
+      };
+    }
+
+    function calculateVolumeMm3(geometry) {
+      const position = geometry.attributes.position;
+      let volume = 0;
+      const a = new THREE.Vector3();
+      const b = new THREE.Vector3();
+      const c = new THREE.Vector3();
+
+      for (let i = 0; i < position.count; i += 3) {
+        a.fromBufferAttribute(position, i);
+        b.fromBufferAttribute(position, i + 1);
+        c.fromBufferAttribute(position, i + 2);
+        volume += a.dot(b.cross(c)) / 6;
+      }
+      return volume;
+    }
+
+    function updateStlEstimate() {
+      const material = elements.material.value;
+      const scalePercent = Math.round(state.stlPrintScale * 100);
+      const scaleFactor = state.stlPrintScale;
+      const scaledVolume = state.stlVolumeCm3 * Math.pow(scaleFactor, 3);
+      const weight = scaledVolume * DENSITIES[material];
+      const priceMxn = weight * PRICES_MXN[material];
+      const dims = getOrientedDimensionsCm();
+
+      elements.scaleValue.textContent = `${scalePercent}%`;
+      elements.weightValue.textContent = `${formatNumber(weight)} g`;
+      elements.priceValue.textContent = formatCurrency(priceMxn);
+      elements.dimensionsValue.textContent = `${formatNumber(dims.x)} x ${formatNumber(dims.y)} x ${formatNumber(dims.z)} cm`;
+      elements.volumeValue.textContent = `${formatNumber(scaledVolume)} cm3`;
+    }
+
+    function formatNumber(number) {
+      return number.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function loadEngravingImages(files) {
+      const allowed = ["image/png", "image/jpeg", "image/svg+xml"];
+      const selected = Array.from(files || []);
+      if (selected.length === 0) {
+        setStatus(elements.tumblerStatus, "tumblerIdle");
+        return;
+      }
+      if (selected.some((file) => !allowed.includes(file.type) && !/\.(png|jpe?g|svg)$/i.test(file.name))) {
+        setStatus(elements.tumblerStatus, "tumblerInvalid", true);
+        return;
+      }
+
+      Promise.all(selected.map(fileToImage))
+        .then((images) => {
+          const startIndex = state.engravingImages.length;
+          images.forEach((item, offset) => {
+            const totalIndex = startIndex + offset;
+            item.u = ((totalIndex % 4) + 0.5) / Math.max(1, Math.min(startIndex + images.length, 4));
+            item.v = 0.52;
+            item.scale = 1;
+            item.bounds = null;
+          });
+          state.engravingImages = state.engravingImages.concat(images);
+          state.activeEngravingIndex = Math.max(0, state.engravingImages.length - images.length);
+          drawTumblerTexture();
+          tumblerTexture.needsUpdate = true;
+          updateImageList();
+          setStatus(elements.tumblerStatus, "tumblerLoaded");
+          state.selectedProduct = "tumbler";
+          updateWhatsappLinks();
+        })
+        .catch(() => {
+          setStatus(elements.tumblerStatus, "tumblerInvalid", true);
+        });
+    }
+
+    function fileToImage(file) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve({ image, name: file.name });
+        image.onerror = reject;
+        const url = URL.createObjectURL(file);
+        image.src = url;
+        image.dataset.previewUrl = url;
+      });
+    }
+
+    function drawTumblerTexture() {
+      if (!tumblerCtx) return;
+      const width = tumblerCanvas.width;
+      const height = tumblerCanvas.height;
+      const metalGradient = tumblerCtx.createLinearGradient(0, 0, width, 0);
+      metalGradient.addColorStop(0, "#cfd3d8");
+      metalGradient.addColorStop(0.16, "#fbfbf8");
+      metalGradient.addColorStop(0.36, "#e3e5e7");
+      metalGradient.addColorStop(0.55, "#ffffff");
+      metalGradient.addColorStop(0.76, "#d8dce0");
+      metalGradient.addColorStop(1, "#f5f5f2");
+
+      tumblerCtx.clearRect(0, 0, width, height);
+      tumblerCtx.fillStyle = metalGradient;
+      tumblerCtx.fillRect(0, 0, width, height);
+
+      for (let x = 0; x < width; x += 7) {
+        tumblerCtx.fillStyle = x % 21 === 0 ? "rgba(255,255,255,0.16)" : "rgba(0,0,0,0.018)";
+        tumblerCtx.fillRect(x, 0, 1, height);
+      }
+
+      const verticalShade = tumblerCtx.createLinearGradient(0, 0, 0, height);
+      verticalShade.addColorStop(0, "rgba(255,255,255,0.28)");
+      verticalShade.addColorStop(0.12, "rgba(255,255,255,0.04)");
+      verticalShade.addColorStop(0.82, "rgba(0,0,0,0.025)");
+      verticalShade.addColorStop(1, "rgba(0,0,0,0.14)");
+      tumblerCtx.fillStyle = verticalShade;
+      tumblerCtx.fillRect(0, 0, width, height);
+
+      state.engravingImages.forEach((item, index) => {
+        drawEngravingImage(item, index, state.engravingImages.length);
+      });
+    }
+
+    function drawEngravingImage(item, index, total) {
+      const image = item.image;
+      const width = tumblerCanvas.width;
+      const height = tumblerCanvas.height;
+      const slotWidth = width / Math.max(total, 1);
+      const maxWidth = Math.min(slotWidth * 0.82, 460) * (item.scale || 1);
+      const maxHeight = height * 0.64 * (item.scale || 1);
+      const ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
+      const drawWidth = image.width * ratio;
+      const drawHeight = image.height * ratio;
+      const x = (item.u ?? ((index + 0.5) / Math.max(total, 1))) * width - drawWidth / 2;
+      const y = (item.v ?? 0.52) * height - drawHeight / 2;
+      item.bounds = {
+        uMin: x / width,
+        uMax: (x + drawWidth) / width,
+        vMin: y / height,
+        vMax: (y + drawHeight) / height
+      };
+
+      const tempCanvas = document.createElement("canvas");
+      tempCanvas.width = Math.max(1, Math.round(drawWidth));
+      tempCanvas.height = Math.max(1, Math.round(drawHeight));
+      const tempCtx = tempCanvas.getContext("2d");
+      tempCtx.drawImage(image, 0, 0, tempCanvas.width, tempCanvas.height);
+
+      const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+        const metal = 112 + gray * 0.22;
+        data[i] = Math.max(92, metal);
+        data[i + 1] = Math.max(100, metal + 10);
+        data[i + 2] = Math.max(112, metal + 22);
+        data[i + 3] = data[i + 3] * 0.9;
+      }
+      tempCtx.putImageData(imageData, 0, 0);
+
+      tumblerCtx.save();
+      tumblerCtx.shadowColor = "rgba(0,0,0,0.22)";
+      tumblerCtx.shadowBlur = 6;
+      tumblerCtx.globalCompositeOperation = "multiply";
+      tumblerCtx.globalAlpha = 0.72;
+      tumblerCtx.drawImage(tempCanvas, x, y, drawWidth, drawHeight);
+      tumblerCtx.restore();
+
+      tumblerCtx.save();
+      tumblerCtx.globalCompositeOperation = "screen";
+      tumblerCtx.globalAlpha = 0.28;
+      tumblerCtx.drawImage(tempCanvas, x - 1, y - 1, drawWidth, drawHeight);
+      tumblerCtx.restore();
+
+      tumblerCtx.save();
+      tumblerCtx.globalAlpha = 0.34;
+      tumblerCtx.strokeStyle = "#9aa3ad";
+      tumblerCtx.lineWidth = 1.5;
+      tumblerCtx.strokeRect(x, y, drawWidth, drawHeight);
+      tumblerCtx.restore();
+    }
+
+    function bindTumblerDrag() {
+      const canvas = tumblerRenderer.domElement;
+      canvas.addEventListener("pointerdown", handleTumblerPointerDown);
+      canvas.addEventListener("pointermove", handleTumblerPointerMove);
+      window.addEventListener("pointerup", handleTumblerPointerUp);
+    }
+
+    function getTumblerUvFromEvent(event) {
+      if (!tumblerMesh || !tumblerRaycaster || !tumblerPointer) return null;
+      const rect = tumblerRenderer.domElement.getBoundingClientRect();
+      tumblerPointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      tumblerPointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      tumblerRaycaster.setFromCamera(tumblerPointer, tumblerCamera);
+      const hit = tumblerRaycaster.intersectObject(tumblerMesh, false)[0];
+      if (!hit || !hit.uv) return null;
+      return { u: hit.uv.x, v: 1 - hit.uv.y };
+    }
+
+    function findEngravingAtUv(uv) {
+      for (let index = state.engravingImages.length - 1; index >= 0; index--) {
+        const bounds = state.engravingImages[index].bounds;
+        if (!bounds) continue;
+        if (uv.u >= bounds.uMin && uv.u <= bounds.uMax && uv.v >= bounds.vMin && uv.v <= bounds.vMax) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    function handleTumblerPointerDown(event) {
+      const uv = getTumblerUvFromEvent(event);
+      if (!uv || !state.engravingImages.length) return;
+      const index = findEngravingAtUv(uv);
+      if (index < 0) return;
+      const item = state.engravingImages[index];
+      state.activeEngravingIndex = index;
+      state.isDraggingEngraving = true;
+      state.dragOffset = {
+        u: uv.u - item.u,
+        v: uv.v - item.v
+      };
+      tumblerControls.enabled = false;
+      tumblerRenderer.domElement.setPointerCapture(event.pointerId);
+      updateImageList();
+    }
+
+    function handleTumblerPointerMove(event) {
+      if (!state.isDraggingEngraving) return;
+      const uv = getTumblerUvFromEvent(event);
+      const item = state.engravingImages[state.activeEngravingIndex];
+      if (!uv || !item) return;
+      item.u = clamp(uv.u - state.dragOffset.u, 0.06, 0.94);
+      item.v = clamp(uv.v - state.dragOffset.v, 0.16, 0.84);
+      drawTumblerTexture();
+      tumblerTexture.needsUpdate = true;
+    }
+
+    function handleTumblerPointerUp(event) {
+      if (!state.isDraggingEngraving) return;
+      state.isDraggingEngraving = false;
+      tumblerControls.enabled = true;
+      if (tumblerRenderer.domElement.hasPointerCapture(event.pointerId)) {
+        tumblerRenderer.domElement.releasePointerCapture(event.pointerId);
+      }
+      updateWhatsappLinks();
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function updateImageList() {
+      if (!state.engravingImages.length) {
+        elements.imageList.textContent = t("noneLoaded");
+        return;
+      }
+      elements.imageList.innerHTML = "";
+      state.engravingImages.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "thumbnail-card";
+        card.classList.toggle("active", index === state.activeEngravingIndex);
+        card.addEventListener("click", () => {
+          state.activeEngravingIndex = index;
+          updateImageList();
+        });
+
+        const image = document.createElement("img");
+        image.className = "thumb";
+        image.src = item.image.dataset.previewUrl || item.image.src;
+        image.alt = item.name;
+
+        const name = document.createElement("span");
+        name.className = "file-name";
+        name.textContent = item.name;
+
+        const remove = document.createElement("button");
+        remove.className = "mini-action";
+        remove.type = "button";
+        remove.textContent = t("removeImage");
+        remove.addEventListener("click", (event) => {
+          event.stopPropagation();
+          removeEngravingImage(index);
+        });
+
+        card.append(image, name, remove);
+        elements.imageList.appendChild(card);
+      });
+    }
+
+    function removeEngravingImage(index) {
+      const [removed] = state.engravingImages.splice(index, 1);
+      if (removed && removed.image.dataset.previewUrl) {
+        URL.revokeObjectURL(removed.image.dataset.previewUrl);
+      }
+      state.activeEngravingIndex = Math.max(0, Math.min(state.activeEngravingIndex, state.engravingImages.length - 1));
+      elements.tumblerFiles.value = "";
+      drawTumblerTexture();
+      tumblerTexture.needsUpdate = true;
+      updateImageList();
+      setStatus(elements.tumblerStatus, state.engravingImages.length ? "tumblerLoaded" : "tumblerIdle");
+      updateWhatsappLinks();
+    }
+
+    function updateTumblerPrice() {
+      elements.tumblerPrice.textContent = formatCurrency(TUMBLER_PRICE_MXN);
+    }
+
+    function getCurrentEstimateText() {
+      if (state.selectedProduct === "tumbler") {
+        return formatCurrency(TUMBLER_PRICE_MXN);
+      }
+      const material = elements.material.value;
+      const scaleFactor = state.stlPrintScale;
+      const weight = state.stlVolumeCm3 * Math.pow(scaleFactor, 3) * DENSITIES[material];
+      return formatCurrency(weight * PRICES_MXN[material]);
+    }
+
+    function updateWhatsappLinks() {
+      const material = elements.material.value;
+      const productKey = state.selectedProduct === "tumbler" ? "productTumbler" : "productStl";
+      const lines = [
+        t("whatsappGreeting"),
+        `${t("whatsappProduct")}: ${t(productKey)}`,
+        state.selectedProduct === "stl" ? `${t("whatsappMaterial")}: ${material}` : "",
+        `${t("whatsappPrice")}: ${getCurrentEstimateText()}`
+      ].filter(Boolean);
+      const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+      elements.whatsappFloat.href = url;
+      elements.footerWhatsapp.href = url;
+    }
+
+    function bindEvents() {
+      elements.languageButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          state.language = button.dataset.lang;
+          applyTranslations();
+        });
+      });
+
+      elements.currencyButtons.forEach((button) => {
+        button.addEventListener("click", () => setCurrency(button.dataset.currency));
+      });
+
+      elements.stlFile.addEventListener("change", (event) => {
+        state.selectedProduct = "stl";
+        readStlFile(event.target.files[0]);
+        updateWhatsappLinks();
+      });
+
+      elements.removeStl.addEventListener("click", clearStlFile);
+
+      elements.material.addEventListener("change", () => {
+        state.selectedProduct = "stl";
+        updateStlEstimate();
+        updateWhatsappLinks();
+      });
+
+      elements.transformButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          state.selectedProduct = "stl";
+          setStlTransformMode(button.dataset.mode);
+        });
+      });
+
+      elements.resetTransform.addEventListener("click", () => {
+        state.selectedProduct = "stl";
+        resetStlTransform();
+      });
+
+      elements.tumblerFiles.addEventListener("change", (event) => loadEngravingImages(event.target.files));
+      window.addEventListener("resize", resizeViewers);
+    }
+
+    function init() {
+      bindEvents();
+      loadThreeDependencies()
+        .then(() => {
+          initStlViewer();
+          initTumblerViewer();
+          resizeViewers();
+          updateTransformControls();
+          applyTranslations();
+          setCurrency("MXN");
+        })
+        .catch(() => {
+          updateViewerMessages();
+          setStatus(elements.stlStatus, "viewerUnavailable", true);
+          setStatus(elements.tumblerStatus, "viewerUnavailable", true);
+          updateTumblerPrice();
+          updateWhatsappLinks();
+        });
+    }
+
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
