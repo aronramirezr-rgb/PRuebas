@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CustomForge MX | Productos Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#hero" class="brand"><span class="brand-mark">CF</span><span>CustomForge MX</span></a>
+    <nav class="nav-links">
+      <a href="#catalog">Catálogo</a>
+      <a href="#print">Cotizador 3D</a>
+      <a href="#tumbler">Termos</a>
+      <a href="/admin">Admin</a>
+    </nav>
+    <div class="switchers">
+      <button class="chip lang active" data-lang="es">ES</button>
+      <button class="chip lang" data-lang="en">EN</button>
+      <button class="chip lang" data-lang="fr">FR</button>
+      <button class="chip currency active" data-currency="MXN">MXN</button>
+      <button class="chip currency" data-currency="USD">USD</button>
+      <button class="chip currency" data-currency="EUR">EUR</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero" id="hero">
+      <div class="container">
+        <p class="eyebrow">Fabricación digital personalizada</p>
+        <h1>Impresión 3D y grabado láser</h1>
+        <p>Elige un producto del catálogo, carga tu propio STL/GLB o personaliza un termo. Arma tu carrito y envía la cotización por WhatsApp.</p>
+        <div class="button-row">
+          <a class="btn" href="#catalog">Ver catálogo</a>
+          <button class="ghost" id="openCartTop">Carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="container">
+        <p class="eyebrow">Catálogo editable</p>
+        <h2>Productos listos para cotizar</h2>
+        <p>Selecciona un producto para cargar su modelo automáticamente en el visualizador.</p>
+        <div class="catalog-toolbar" id="categoryFilters"></div>
+        <div class="cards" id="productCards"></div>
+      </div>
+    </section>
+
+    <section class="section" id="print">
+      <div class="container">
+        <p class="eyebrow">Cotizador 3D</p>
+        <h2>STL / GLB</h2>
+        <div class="grid-2">
+          <div class="panel controls">
+            <label class="upload">
+              <input type="file" id="modelUpload" accept=".stl,.glb,model/stl,model/gltf-binary">
+              <strong>Subir STL o GLB</strong>
+              <span>GLB conserva colores/materiales. STL se cotiza por volumen.</span>
+            </label>
+            <p id="modelStatus">Esperando modelo.</p>
+            <div class="field">
+              <label for="material">Material</label>
+              <select id="material">
+                <option value="PLA">PLA</option>
+                <option value="PETG">PETG</option>
+              </select>
+            </div>
+            <div class="field">
+              <span class="field-title">Transformar modelo</span>
+              <div class="button-row">
+                <button class="ghost transform-btn active" data-mode="translate">Mover</button>
+                <button class="ghost transform-btn" data-mode="rotate">Rotar</button>
+                <button class="ghost transform-btn" data-mode="scale">Escalar</button>
+                <button class="ghost" id="resetModel">Reset</button>
+              </div>
+              <p>Arrastra el gizmo en el visor. El lado mayor permitido va de 5 cm a 40 cm.</p>
+            </div>
+            <div class="metrics">
+              <div class="metric"><span>Escala</span><strong id="scaleMetric">100%</strong></div>
+              <div class="metric"><span>Dimensiones</span><strong id="dimsMetric">0 x 0 x 0 cm</strong></div>
+              <div class="metric"><span>Peso</span><strong id="weightMetric">0.00 g</strong></div>
+              <div class="metric"><span>Precio</span><strong id="priceMetric">$ MXN 0.00</strong></div>
+            </div>
+            <div class="field">
+              <label for="printQty">Cantidad</label>
+              <input id="printQty" type="number" min="1" value="1">
+            </div>
+            <button class="btn" id="addPrintToCart">Agregar impresión al carrito</button>
+          </div>
+          <div class="panel viewer" id="modelViewer">
+            <div class="viewer-note" id="modelNote">Carga o selecciona un modelo para comenzar.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tumbler">
+      <div class="container">
+        <p class="eyebrow">Grabado láser</p>
+        <h2>Termos personalizados</h2>
+        <div class="grid-2">
+          <div class="panel controls">
+            <div class="field">
+              <span class="field-title">Modelo de termo</span>
+              <div class="button-row" id="tumblerButtons"></div>
+            </div>
+            <label class="upload">
+              <input type="file" id="engravingUpload" accept=".png,.jpg,.jpeg,.svg,image/png,image/jpeg,image/svg+xml" multiple>
+              <strong>Subir imágenes</strong>
+              <span>Arrastra el diseño directamente sobre el termo.</span>
+            </label>
+            <div class="thumbs" id="engravingThumbs">Sin imágenes.</div>
+            <div class="metrics">
+              <div class="metric"><span>Base</span><strong id="tumblerBase">$ MXN 0.00</strong></div>
+              <div class="metric"><span>Grabados</span><strong id="engravingCost">$ MXN 0.00</strong></div>
+              <div class="metric"><span>Total</span><strong id="tumblerTotal">$ MXN 0.00</strong></div>
+              <div class="metric"><span>Diseños</span><strong id="engravingCount">0</strong></div>
+            </div>
+            <div class="field">
+              <label for="tumblerQty">Cantidad</label>
+              <input id="tumblerQty" type="number" min="1" value="1">
+            </div>
+            <button class="btn" id="addTumblerToCart">Agregar termo al carrito</button>
+          </div>
+          <div class="panel viewer" id="tumblerViewer">
+            <div class="viewer-note">Selecciona un termo y carga diseños.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>CustomForge MX</strong>
+      <p>Productos personalizados con impresión 3D, GLB a color y grabado láser.</p>
+    </div>
+  </footer>
+
+  <button class="btn cart-button" id="openCart">Carrito (<span id="cartCount">0</span>)</button>
+  <aside class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" id="closeCartBackdrop"></div>
+    <div class="drawer-panel">
+      <div class="button-row">
+        <h2 style="margin-right:auto">Carrito</h2>
+        <button class="ghost" id="closeCart">Cerrar</button>
+      </div>
+      <div id="cartItems"></div>
+      <div class="metrics">
+        <div class="metric"><span>Total</span><strong id="cartTotal">$ MXN 0.00</strong></div>
+      </div>
+      <a class="btn" id="whatsappCheckout" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    </div>
+  </aside>
+
+  <script src="/main.js"></script>
+</body>
+</html>
