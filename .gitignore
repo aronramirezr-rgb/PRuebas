@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+data/*.db
+data/*.log
+uploads/*
+!uploads/.gitkeep
+!uploads/products/.gitkeep
+!uploads/tumblers/.gitkeep
+!uploads/thumbs/.gitkeep

@@ -1,0 +1,2 @@
+# No external Python packages are required.
+# The backend uses Python standard library + SQLite.
